@@ -1,0 +1,21 @@
+/* variables.css */
+@import "./variables.css";
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  /* Set some basic styling for the entire page */
+  body {
+    @apply font-zen bg-background box-border m-0 p-0;
+  }
+
+  @layer components {
+    .navigation-link {
+      @apply p-4 font-bold text-white transition;
+    }
+    .navigation-link.active {
+      @apply bg-slate-300;
+    }
+  }
+}

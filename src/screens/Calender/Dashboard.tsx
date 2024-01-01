@@ -1,7 +1,7 @@
-const Dashboard = () => {
+const Calender = () => {
   return (
     <>
-      <h1>dashboard</h1>
+      <h1>Calender</h1>
       <p>
         Lorem ipsum dolor sit, amet consectetur adipisicing elit. Facere neque
         laudantium quis adipisci ratione? Ex, veniam. Rerum porro deleniti cum
@@ -12,4 +12,4 @@ const Dashboard = () => {
   );
 };
 
-export default Dashboard;
+export default Calender;

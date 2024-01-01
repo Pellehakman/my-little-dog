@@ -11,7 +11,7 @@ ReactDOM.createRoot(document.getElementById("root")!).render(
       <body className="flex flex-col">
         <Navigation />
         <div className="container mx-auto">
-          <main className="flex-grow p-4">
+          <main className="flex-grow">
             <Routes>
               <Route path="/" element={<Dashboard />} />
               {/* Add more routes as needed */}

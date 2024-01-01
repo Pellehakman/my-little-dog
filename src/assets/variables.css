@@ -1,17 +1,14 @@
 @import url("https://fonts.googleapis.com/css2?family=Zen+Kaku+Gothic+New:wght@300;400;500;700;900&display=swap");
 
 :root {
-  --primary: #0f0d15;
-  --background: #dbdbdb;
-  --secondary: rgb(11, 99, 150);
-  --borderColor: rgb(0, 0, 0);
-  --input: #1e1e1ec1;
-  --monestral: #09080c;
-  --brand: #f8b912;
+  --primary: #2FA6E9;
+  --background: #F3F3F3;
+  --secondary: #2FA6E9;
+  --brand: #EB0A5D;
 
-  --primary-500: #1eadff;
-  --primary-600: #068fff;
-  --primary-700: #007bff;
+  --primary-500: #41abe9;
+  --primary-600: #2FA6E9;
+  --primary-700: #288dc8;
 
   --success-500: #138e76;
   --success-600: #157866;
@@ -27,7 +24,7 @@
 
   --black: #0c0d0c;
   --white: #ffffff;
-  --gray: #606060;
+  --gray: #737373;
 
   --text-primary: rgb(255, 255, 255);
   --text-secondary: rgb(0, 0, 0);

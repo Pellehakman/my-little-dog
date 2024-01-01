@@ -1,70 +1,44 @@
-// Navigation.js
-import React from "react";
-import {
-  faStar,
-  faCalendar,
-  faCompass,
-  faComments,
-  faUser,
-} from "@fortawesome/free-solid-svg-icons";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { NavLink } from "react-router-dom";
+import React, { useState } from "react";
+import { AnimatePresence, motion } from "framer-motion";
+import Dashboard from "../../screens/Dashboard/Dashboard";
+import Calender from "../../screens/Calender/Dashboard";
+import { initialTabs as tabs } from "./Ingredients";
 
 const Navigation = () => {
+  const [selectedTab, setSelectedTab] = useState(tabs[0]);
+
   return (
-    <aside id="sidebar" className="w-screen  bg-red-500 p-4">
-      <ul className="flex">
-        <NavLink
-          to="/"
-          className={({ isActive }) =>
-            isActive ? "navigation-link active" : "navigation-link"
-          }
-        >
-          <FontAwesomeIcon icon={faStar} className="mr-2" />
-          <span className="max-sm:hidden">Dashboard</span>
-        </NavLink>
-
-        <NavLink
-          to="/calendar"
-          className={({ isActive }) =>
-            isActive ? "navigation-link active" : "navigation-link"
-          }
-        >
-          <FontAwesomeIcon icon={faCalendar} className="mr-2" />
-          <span className="max-sm:hidden">Calendar</span>
-        </NavLink>
-
-        <NavLink
-          to="/explore"
-          className={({ isActive }) =>
-            isActive ? "navigation-link active" : "navigation-link"
-          }
-        >
-          <FontAwesomeIcon icon={faCompass} className="mr-2" />
-          <span className="max-sm:hidden">Explore</span>
-        </NavLink>
-
-        <NavLink
-          to="/chat"
-          className={({ isActive }) =>
-            isActive ? "navigation-link active" : "navigation-link"
-          }
-        >
-          <FontAwesomeIcon icon={faComments} className="mr-2" />
-          <span className="max-sm:hidden">Chat</span>
-        </NavLink>
-
-        <NavLink
-          to="/profile"
-          className={({ isActive }) =>
-            isActive ? "navigation-link active" : "navigation-link"
-          }
-        >
-          <FontAwesomeIcon icon={faUser} className="mr-2" />
-          <span className="max-sm:hidden">Profile</span>
-        </NavLink>
-      </ul>
-    </aside>
+    <div>
+      <nav>
+        <ul>
+          {tabs.map((item) => (
+            <li
+              key={item.label}
+              className={item === selectedTab ? "selected" : ""}
+              onClick={() => setSelectedTab(item)}
+            >
+              {`${item.icon} ${item.label}`}
+              {item === selectedTab ? (
+                <motion.div className="underline" layoutId="underline" />
+              ) : null}
+            </li>
+          ))}
+        </ul>
+      </nav>
+      <main>
+        <AnimatePresence exitBeforeEnter={false}>
+          <motion.div
+            key={selectedTab ? selectedTab.label : "empty"}
+            initial={{ y: 10, opacity: 0 }}
+            animate={{ y: 0, opacity: 1 }}
+            exit={{ y: -10, opacity: 0 }}
+            transition={{ duration: 0.2 }}
+          >
+            {selectedTab ? selectedTab.icon : "😋"}
+          </motion.div>
+        </AnimatePresence>
+      </main>
+    </div>
   );
 };
 

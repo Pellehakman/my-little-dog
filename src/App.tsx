@@ -1,7 +1,10 @@
+import { Router } from "react-router-dom";
+import Tabs from "./common/Navigation/Navigation";
+
 function App() {
   return (
-    <div className="">
-      <h1>hej</h1>
+    <div className="wrapper">
+      
     </div>
   );
 }

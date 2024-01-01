@@ -1,44 +1,59 @@
-import React, { useState } from "react";
-import { AnimatePresence, motion } from "framer-motion";
+import React from "react";
+import { NavLink, Route, Routes, useLocation } from "react-router-dom";
+import { motion, AnimatePresence } from "framer-motion";
 import Dashboard from "../../screens/Dashboard/Dashboard";
-import Calender from "../../screens/Calender/Dashboard";
-import { initialTabs as tabs } from "./Ingredients";
+import Calendar from "../../screens/Calendar/Calendar";
+
+const tabVariants = {
+  hidden: { opacity: 0 },
+  visible: { opacity: 1 },
+  exit: { opacity: 0 },
+};
 
 const Navigation = () => {
-  const [selectedTab, setSelectedTab] = useState(tabs[0]);
+  const tabs = [
+    {
+      label: "Dashboard",
+      path: "/dashboard",
+      component: <Dashboard />,
+    },
+    {
+      label: "Calendar",
+      path: "/calendar",
+      component: <Calendar />,
+    },
+  ];
 
   return (
-    <div>
+    <>
       <nav>
-        <ul>
-          {tabs.map((item) => (
-            <li
-              key={item.label}
-              className={item === selectedTab ? "selected" : ""}
-              onClick={() => setSelectedTab(item)}
-            >
-              {`${item.icon} ${item.label}`}
-              {item === selectedTab ? (
-                <motion.div className="underline" layoutId="underline" />
-              ) : null}
-            </li>
-          ))}
-        </ul>
+        {tabs.map((tab) => (
+          <NavLink key={tab.path} to={tab.path}>
+            {tab.label}
+          </NavLink>
+        ))}
       </nav>
-      <main>
-        <AnimatePresence exitBeforeEnter={false}>
-          <motion.div
-            key={selectedTab ? selectedTab.label : "empty"}
-            initial={{ y: 10, opacity: 0 }}
-            animate={{ y: 0, opacity: 1 }}
-            exit={{ y: -10, opacity: 0 }}
-            transition={{ duration: 0.2 }}
-          >
-            {selectedTab ? selectedTab.icon : "😋"}
-          </motion.div>
-        </AnimatePresence>
-      </main>
-    </div>
+      <AnimatePresence exitBeforeEnter={false}>
+        <Routes>
+          {tabs.map((tab) => (
+            <Route
+              path={tab.path}
+              element={
+                <motion.div
+                  variants={tabVariants}
+                  initial="hidden"
+                  animate="visible"
+                  exit="exit"
+                >
+                  {tab.component}
+                </motion.div>
+              }
+              key={tab.path}
+            />
+          ))}
+        </Routes>
+      </AnimatePresence>
+    </>
   );
 };
 

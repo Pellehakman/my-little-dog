@@ -8,7 +8,7 @@ import Navigation from "./common/Navigation/Navigation";
 ReactDOM.createRoot(document.getElementById("root")!).render(
   <React.StrictMode>
     <Router>
-      <body className="flex">
+      <body className="flex flex-col">
         <Navigation />
         <div className="container mx-auto">
           <main className="flex-grow p-4">

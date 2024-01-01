@@ -12,10 +12,10 @@
 
   @layer components {
     .navigation-link {
-      @apply p-4 font-bold text-white transition;
+      @apply p-4 font-bold text-white transition flex justify-center items-center sm:justify-start leading-none;
     }
     .navigation-link.active {
-      @apply bg-slate-300;
+      @apply bg-slate-600;
     }
   }
 }

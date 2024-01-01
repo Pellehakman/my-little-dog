@@ -12,9 +12,8 @@ import { NavLink } from "react-router-dom";
 
 const Navigation = () => {
   return (
-    <aside id="sidebar" className="h-screen w-64 bg-red-500 p-4">
-      <h1 className="text-white text-xl font-bold mb-4">Navigation</h1>
-      <ul className="flex flex-col">
+    <aside id="sidebar" className="w-screen  bg-red-500 p-4">
+      <ul className="flex">
         <NavLink
           to="/"
           className={({ isActive }) =>
@@ -22,7 +21,7 @@ const Navigation = () => {
           }
         >
           <FontAwesomeIcon icon={faStar} className="mr-2" />
-          Dashboard
+          <span className="max-sm:hidden">Dashboard</span>
         </NavLink>
 
         <NavLink
@@ -32,7 +31,7 @@ const Navigation = () => {
           }
         >
           <FontAwesomeIcon icon={faCalendar} className="mr-2" />
-          Calendar
+          <span className="max-sm:hidden">Calendar</span>
         </NavLink>
 
         <NavLink
@@ -42,7 +41,7 @@ const Navigation = () => {
           }
         >
           <FontAwesomeIcon icon={faCompass} className="mr-2" />
-          Explore
+          <span className="max-sm:hidden">Explore</span>
         </NavLink>
 
         <NavLink
@@ -52,7 +51,7 @@ const Navigation = () => {
           }
         >
           <FontAwesomeIcon icon={faComments} className="mr-2" />
-          Chat
+          <span className="max-sm:hidden">Chat</span>
         </NavLink>
 
         <NavLink
@@ -62,7 +61,7 @@ const Navigation = () => {
           }
         >
           <FontAwesomeIcon icon={faUser} className="mr-2" />
-          Profile
+          <span className="max-sm:hidden">Profile</span>
         </NavLink>
       </ul>
     </aside>

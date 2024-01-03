@@ -2,6 +2,9 @@ import React, { useState, useRef, useEffect } from "react";
 import { motion, useAnimation } from "framer-motion";
 import Dashboard from "../../screens/Dashboard/Dashboard";
 import Calendar from "../../screens/Calendar/Calendar";
+import Explore from "../../screens/Explore/Explore";
+import Chat from "../../screens/Chat/Chat";
+import Profile from "../../screens/Profile/Profile";
 
 const Navigation = () => {
   // let tabs = [
@@ -28,19 +31,19 @@ const Navigation = () => {
       id: 3,
       label: "Utforska",
       path: "/explore",
-      children: <Calendar />,
+      children: <Explore />,
     },
     {
       id: 4,
       label: "Chat",
       path: "/chat",
-      children: <Calendar />,
+      children: <Chat />,
     },
     {
       id: 5,
       label: "Profil",
-      path: "/profil",
-      children: <Calendar />,
+      path: "/profile",
+      children: <Profile />,
     },
   ];
 

@@ -1,0 +1,186 @@
+<content id="data-content">
+    <style>
+        /* Insert your CSS overrides here */
+        * {
+            box-sizing: border-box;
+        }
+
+        .example-themePrimary a {
+            color: {{@root.theme.palette.themePrimary}};
+        }
+
+        .icon {
+            width: 22px;
+            height: 16px;
+            display: none;
+        }
+
+        ul.template--custom {
+            padding: 0px;
+            margin: 0px;
+            list-style: none;
+        }
+
+        ul.template--custom li {
+            display: flex;
+        }
+
+        .operationSys {
+            display: flex;
+            border-radius: 4px;
+            box-shadow: 0px 4px 8px 0px rgba(0, 0, 0, 0.20);
+            display: inline-flex;
+            align-items: center;
+            padding: 12px 24px 12px 0;
+            margin-bottom: 8px;
+            background-color: rgb(0, 120, 212);
+            color: white;
+            text-decoration: none;
+            border: none;
+            cursor: pointer;
+            transition: background-color 0.3s;
+            width: 100%;
+            
+        }
+
+        .operationSys__title {
+            font-weight: bold;
+            font-size: 16px;
+            margin-bottom: 2px;
+        }
+         .operationSys__sysName {
+               font-size: 14px;
+            margin-bottom: 2px;
+        }
+
+        .operationSys__icon {
+            padding: 0px 12px 0px 12px;
+        }
+        .operationSys__arrowIcon-container{
+           
+            display: flex;
+            flex: 1;
+            justify-content: end;
+            
+        }
+        .operationSys__arrowIcon{
+            font-size: 12px;
+        }
+
+        .operationSys__content {
+            padding: 4px;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .operationSys__link--title {
+            text-decoration: none;
+            font-size: 14px;
+            font-weight: regular;
+            color: black;
+        }
+
+        .operationSys__summary {
+            width: 100%;
+        }
+
+        .operationSys__link--summary {
+            text-decoration: none;
+            font-size: 16px;
+            color: black;
+            font-size: 14px;
+        }
+
+        .operationSys__button-wrapper {
+            display: inline-block;
+            margin-top: 24px;
+        }
+
+        .operationSys__button {}
+
+        .operationSys__button:hover {
+            background-color: #005a9e;
+        }
+
+        .operationSys__button-icon {
+            font-size: 22px;
+            margin-right: 8px;
+        }
+
+        .operationSys__button-text {
+            font-size: 14px;
+        }
+
+        .operationSys__title-container {
+            display: flex;
+            flex-direction: column;
+        }
+    </style>
+
+    <div class="template ">
+        {{#if @root.properties.showSelectedFilters}}
+        <pnp-selectedfilters
+            data-filters="{{JSONstringify filters.selectedFilters 2}}"
+            data-filters-configuration="{{JSONstringify filters.filtersConfiguration 2}}"
+            data-instance-id="{{filters.instanceId}}"
+            data-operator="{{filters.filterOperator}}"
+            data-theme-variant="{{JSONstringify @root.theme}}"
+        ></pnp-selectedfilters>
+        {{/if}}
+
+        <div class="template--header">
+            {{#if @root.properties.showResultsCount}}
+            <div class="template--resultCount">
+                <label class="ms-fontWeight-semibold">{{getCountMessage @root.data.totalItemsCount @root.inputQueryText}}</label>
+            </div>
+            {{/if}}
+
+            <div class="template--sort">
+                <pnp-sortfield
+                    data-fields="{{JSONstringify @root.properties.dataSourceProperties.sortList}}"
+                    data-default-selected-field="{{sort.selectedSortFieldName}}"
+                    data-default-direction="{{sort.selectedSortDirection}}"
+                    data-theme-variant="{{JSONstringify @root.theme}}">
+                </pnp-sortfield>
+            </div>
+        </div>
+
+        <ul class="template--custom ">
+            {{#each data.items as |item|}}
+            <pnp-select
+                data-enabled="{{@root.properties.itemSelectionProps.allowItemSelection}}"
+                data-index="{{@index}}"
+                data-is-selected="{{isItemSelected @root.selectedKeys @index}}">
+                <template id="content">
+                    {{#> resultTypes item=item}}
+                    <a href="{{getUrlField khweburlOWSURLH "URL"}}" target="_blank" class="operationSys">
+                        <pnp-icon class="operationSys__icon" data-name="System" aria-hidden="true"></pnp-icon>
+                        <div class="operationSys__title-container">
+                            <span class="operationSys__title">{{slot item @root.slots.Title}}</span>
+                            <span class="operationSys__sysName">{{slot item @root.slots.Sysname}}</span>
+                        </div>
+                        <div class="operationSys__arrowIcon-container">
+                            <pnp-icon class="operationSys__arrowIcon" data-name="ArrowUpRight8" aria-hidden="true"></pnp-icon>
+                        </div>
+                    </a>
+                    {{/resultTypes}}
+                </template>
+            </pnp-select>
+            {{/each}}
+        </ul>
+    </div>
+
+    {{#if @root.properties.paging.showPaging}}
+    <pnp-pagination
+        data-total-items="{{@root.data.totalItemsCount}}"
+        data-hide-first-last-pages="{{@root.properties.paging.hideFirstLastPages}}"
+        data-hide-disabled="{{@root.properties.paging.hideDisabled}}"
+        data-hide-navigation="{{@root.properties.paging.hideNavigation}}"
+        data-range="{{@root.properties.paging.pagingRange}}"
+        data-items-count-per-page="{{@root.properties.paging.itemsCountPerPage}}"
+        data-current-page-number="{{@root.paging.currentPageNumber}}"
+    >
+    </pnp-pagination>
+    {{/if}}
+</content>
+</html>

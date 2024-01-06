@@ -11,6 +11,9 @@
   }
 
   @layer components {
+    .screen-container {
+      @apply container;
+    }
     .navigation-link {
       @apply font-bold text-white transition flex justify-center items-center sm:justify-start leading-none px-3;
     }

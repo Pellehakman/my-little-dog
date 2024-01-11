@@ -3,7 +3,11 @@ import Tabs from "./common/Navigation/Navigation";
 import Navigation from "./common/Navigation/Navigation";
 
 function App() {
-  return <Navigation />;
+  return (
+    <div>
+      <Navigation />;
+    </div>
+  );
 }
 
 export default App;

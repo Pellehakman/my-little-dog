@@ -12,7 +12,7 @@
 
   @layer components {
     .screen-container {
-      @apply container;
+      @apply container mx-auto bg-slate-200;
     }
     .navigation-link {
       @apply font-bold text-white transition flex justify-center items-center sm:justify-start leading-none px-3;
